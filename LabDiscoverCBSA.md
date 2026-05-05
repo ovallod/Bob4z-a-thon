@@ -17,12 +17,13 @@
 6. [Exercice 1 : Initialisation et Analyse du Workspace](#exercice-1--initialisation-et-analyse-du-workspace)
 7. [Exercice 2 : Génération de l'Inventaire Applicatif](#exercice-2--génération-de-linventaire-applicatif)
 8. [Exercice 3 : Création du Diagramme d'Architecture](#exercice-3--création-du-diagramme-darchitecture)
-9. [Exercice 4 : Analyse des Règles Métier SORTCODE](#exercice-4--analyse-des-règles-métier-sortcode)
-10. [Exercice 5 : Analyse d'Impact des Changements](#exercice-5--analyse-dimpact-des-changements)
-11. [Exercice 6 : Documentation du Parcours Utilisateur](#exercice-6--documentation-du-parcours-utilisateur)
-12. [Exercice 7 : Analyse de Faisabilité d'Évolution](#exercice-7--analyse-de-faisabilité-dévolution)
-13. [Exercice 8 : Automatisation avec Bobshell](#exercice-8--automatisation-avec-bobshell-premium-z)
-14. [Conclusion](#conclusion)
+9. [Exercice 4 : Documentation du Programme BANKDATA](#exercice-4--documentation-du-programme-bankdata)
+10. [Exercice 5 : Analyse des Règles Métier SORTCODE](#exercice-5--analyse-des-règles-métier-sortcode)
+11. [Exercice 6 : Analyse d'Impact des Changements](#exercice-6--analyse-dimpact-des-changements)
+12. [Exercice 7 : Documentation du Parcours Utilisateur](#exercice-7--documentation-du-parcours-utilisateur)
+13. [Exercice 8 : Analyse de Faisabilité d'Évolution](#exercice-8--analyse-de-faisabilité-dévolution)
+14. [Exercice 9 : Automatisation avec Bobshell](#exercice-9--automatisation-avec-bobshell-premium-z)
+15. [Conclusion](#conclusion)
 
 ---
 
@@ -593,6 +594,375 @@ Diagramme éditable montrant 4 couches :
 | Mise à jour difficile | Régénération facile |
 
 ---
+
+## Exercice 4 : Documentation du Programme BANKDATA
+
+### 🎯 Objectif
+
+Générer une documentation technique complète du programme batch BANKDATA qui initialise les données de l'application.
+
+### 🔧 Mode Bob à Utiliser
+
+**Mode : 🧰 Z Code**
+
+Le mode Z Code est spécialisé dans l'analyse et la documentation détaillée des programmes COBOL.
+
+### 📝 Contexte
+
+BANKDATA est le programme batch d'initialisation des données. Il est critique pour comprendre :
+- Comment les données sont générées
+- Quelles structures sont initialisées
+- Les règles de génération des données de test
+- Les dépendances avec VSAM et DB2
+
+### 💬 Prompt Bob
+
+```
+Analyse le programme base/cobol_src/BANKDATA.cbl et génère une documentation technique complète incluant :
+- Description et objectif du programme
+- Paramètres d'entrée (PARM)
+- Structures de données manipulées
+- Fichiers et tables accédés (VSAM CUSTOMER, DB2 ACCOUNT)
+- Logique de génération des données
+- Copybooks utilisés
+- Règles métier implémentées
+- Diagramme de flux du traitement
+
+Sauvegarde la documentation dans docs/BANKDATA-docu-technique.md
+```
+
+### ✅ Résultat Attendu
+
+**Fichier créé : `docs/BANKDATA-docu-technique.md`**
+
+Document structuré contenant :
+
+#### 1. Vue d'Ensemble
+
+```markdown
+# Documentation Technique - BANKDATA
+
+**Programme** : BANKDATA.cbl  
+**Type** : Programme batch d'initialisation  
+**Langage** : IBM Enterprise COBOL for z/OS  
+**Auteur** : JON COLLETT
+
+## Description
+
+BANKDATA est le programme batch responsable de l'initialisation des données 
+de l'application bancaire CBSA. Il génère et peuple :
+- Le fichier VSAM CUSTOMER (données clients)
+- La table DB2 ACCOUNT (comptes bancaires)
+
+## Objectif Métier
+
+Créer un jeu de données de test cohérent pour l'application CBSA avec :
+- Génération paramétrable de clients
+- Création automatique de comptes associés
+- Données réalistes (noms, adresses, soldes)
+- Support de génération en masse
+```
+
+#### 2. Paramètres d'Entrée
+
+```markdown
+## Paramètres d'Entrée (PARM)
+
+Format : `PARM='fffffff,ttttttt,sssssss,rrrrrrr'`
+
+| Paramètre | Position | Description | Exemple |
+|-----------|----------|-------------|---------|
+| fffffff | 1 | Clé de départ (FROM) | 0000001 |
+| ttttttt | 2 | Clé de fin (TO) | 0001000 |
+| sssssss | 3 | Pas d'incrémentation (STEP) | 0000001 |
+| rrrrrrr | 4 | Graine aléatoire (RANDOM SEED) | 1234567 |
+
+**Exemple d'utilisation** :
+```
+//SYSIN DD *
+PARM='0000001,0001000,0000001,9876543'
+/*
+```
+
+Génère 1000 clients (de 1 à 1000) avec la graine aléatoire 9876543.
+```
+
+#### 3. Structures de Données
+
+```markdown
+## Structures de Données
+
+### Fichier VSAM CUSTOMER
+
+**Copybook** : CUSTOMER.cpy  
+**Organisation** : KSDS (Key Sequenced Data Set)  
+**Clé** : CUSTOMER-KEY (10 octets)
+
+Champs principaux :
+- CUSTOMER-EYECATCHER : 'CUST' (4 octets)
+- CUSTOMER-NUMBER : Numéro unique (10 octets)
+- CUSTOMER-NAME : Nom complet (60 octets)
+- CUSTOMER-ADDRESS : Adresse (160 octets)
+- CUSTOMER-DATE-OF-BIRTH : Date de naissance (10 octets)
+- CUSTOMER-CREDIT-SCORE : Score de crédit (3 chiffres)
+- CUSTOMER-CS-REVIEW-DATE : Date révision crédit (10 octets)
+
+### Table DB2 ACCOUNT
+
+**Copybook** : ACCDB2.cpy  
+**Table** : ACCOUNT
+
+Champs principaux :
+- ACCOUNT-EYECATCHER : 'ACCT' (4 octets)
+- ACCOUNT-CUST-NO : Référence client (10 octets)
+- ACCOUNT-SORT-CODE : Code agence (6 octets) - Valeur fixe : 987654
+- ACCOUNT-NUMBER : Numéro de compte (8 octets)
+- ACCOUNT-TYPE : Type de compte (8 octets)
+- ACCOUNT-INTEREST-RATE : Taux d'intérêt (COMP-3)
+- ACCOUNT-OPENED : Date d'ouverture (10 octets)
+- ACCOUNT-OVERDRAFT-LIMIT : Découvert autorisé (COMP)
+- ACCOUNT-LAST-STMT-DATE : Date dernier relevé (10 octets)
+- ACCOUNT-NEXT-STMT-DATE : Date prochain relevé (10 octets)
+- ACCOUNT-AVAILABLE-BALANCE : Solde disponible (COMP-3)
+- ACCOUNT-ACTUAL-BALANCE : Solde réel (COMP-3)
+```
+
+#### 4. Logique de Traitement
+
+```markdown
+## Logique de Traitement
+
+### Flux Principal
+
+1. **Initialisation**
+   - Lecture des paramètres PARM
+   - Validation des paramètres
+   - Ouverture fichier VSAM CUSTOMER
+   - Connexion DB2
+
+2. **Boucle de Génération** (FROM → TO par STEP)
+   - Génération données client
+   - Écriture enregistrement CUSTOMER (VSAM)
+   - Génération 1-3 comptes par client
+   - Insertion enregistrements ACCOUNT (DB2)
+
+3. **Finalisation**
+   - Fermeture fichier VSAM
+   - COMMIT DB2
+   - Affichage statistiques
+   - Terminaison
+
+### Règles de Génération
+
+**Clients** :
+- Numéro client = valeur de la boucle (formaté sur 10 chiffres)
+- Nom = Génération aléatoire basée sur seed
+- Adresse = Génération aléatoire
+- Date de naissance = Aléatoire entre 1940 et 2000
+- Score de crédit = Aléatoire entre 300 et 850
+
+**Comptes** :
+- Nombre de comptes par client = Aléatoire (1 à 3)
+- SORTCODE = Valeur fixe '987654'
+- Numéro de compte = Séquentiel sur 8 chiffres
+- Type = Aléatoire parmi : CURRENT, SAVING, LOAN, ISA
+- Taux d'intérêt = Selon type de compte
+- Solde initial = Aléatoire entre -1000 et 50000
+- Découvert = Selon type et score crédit
+```
+
+#### 5. Copybooks Utilisés
+
+```markdown
+## Copybooks Utilisés
+
+| Copybook | Description | Usage |
+|----------|-------------|-------|
+| CUSTOMER.cpy | Structure enregistrement client VSAM | Définition FD |
+| ACCDB2.cpy | Structure table ACCOUNT DB2 | EXEC SQL INCLUDE |
+| SORTCODE.cpy | Constante SORTCODE | Valeur agence |
+```
+
+#### 6. Gestion des Erreurs
+
+```markdown
+## Gestion des Erreurs
+
+### Erreurs VSAM
+
+- **Status 22** : Clé dupliquée → Ignorée, passage au suivant
+- **Status 24** : Limite fichier atteinte → Arrêt traitement
+- **Autres** : Affichage erreur et ABEND
+
+### Erreurs DB2
+
+- **SQLCODE -803** : Clé dupliquée → Ignorée
+- **SQLCODE < 0** : Erreur SQL → ROLLBACK et ABEND
+- **SQLCODE = 100** : Fin de données → Normal
+
+### Validation Paramètres
+
+- FROM > TO → Erreur "Invalid range"
+- STEP = 0 → Erreur "Invalid step"
+- Paramètres manquants → Valeurs par défaut
+```
+
+#### 7. Statistiques de Sortie
+
+```markdown
+## Statistiques de Sortie
+
+Le programme affiche en fin de traitement :
+
+```
+BANKDATA - Data Initialization Complete
+==========================================
+Customers created    : 1000
+Accounts created     : 2347
+VSAM writes         : 1000
+DB2 inserts         : 2347
+Errors encountered  : 0
+Elapsed time        : 00:02:34
+==========================================
+```
+```
+
+#### 8. Diagramme de Flux
+
+```markdown
+## Diagramme de Flux
+
+```
+┌─────────────────────┐
+│   Début BANKDATA    │
+└──────────┬──────────┘
+           │
+           ▼
+┌─────────────────────┐
+│ Lecture PARM        │
+│ (FROM,TO,STEP,SEED) │
+└──────────┬──────────┘
+           │
+           ▼
+┌─────────────────────┐
+│ Validation          │
+│ Paramètres          │
+└──────────┬──────────┘
+           │
+           ▼
+┌─────────────────────┐
+│ Ouverture VSAM      │
+│ CUSTOMER            │
+└──────────┬──────────┘
+           │
+           ▼
+┌─────────────────────┐
+│ Connexion DB2       │
+└──────────┬──────────┘
+           │
+           ▼
+    ┌──────────────┐
+    │ Boucle       │◄─────┐
+    │ FROM → TO    │      │
+    └──────┬───────┘      │
+           │              │
+           ▼              │
+┌─────────────────────┐   │
+│ Génération Client   │   │
+│ (nom, adresse, etc) │   │
+└──────────┬──────────┘   │
+           │              │
+           ▼              │
+┌─────────────────────┐   │
+│ WRITE CUSTOMER      │   │
+│ (VSAM)              │   │
+└──────────┬──────────┘   │
+           │              │
+           ▼              │
+    ┌──────────────┐      │
+    │ Boucle       │◄──┐  │
+    │ 1-3 comptes  │   │  │
+    └──────┬───────┘   │  │
+           │           │  │
+           ▼           │  │
+┌─────────────────────┐│  │
+│ Génération Compte   ││  │
+│ (type, solde, etc)  ││  │
+└──────────┬──────────┘│  │
+           │           │  │
+           ▼           │  │
+┌─────────────────────┐│  │
+│ INSERT ACCOUNT      ││  │
+│ (DB2)               ││  │
+└──────────┬──────────┘│  │
+           │           │  │
+           ▼           │  │
+    ┌──────────────┐   │  │
+    │ Compte       │───┘  │
+    │ suivant ?    │      │
+    └──────┬───────┘      │
+           │              │
+           ▼              │
+    ┌──────────────┐      │
+    │ Client       │──────┘
+    │ suivant ?    │
+    └──────┬───────┘
+           │
+           ▼
+┌─────────────────────┐
+│ COMMIT DB2          │
+└──────────┬──────────┘
+           │
+           ▼
+┌─────────────────────┐
+│ Fermeture VSAM      │
+└──────────┬──────────┘
+           │
+           ▼
+┌─────────────────────┐
+│ Affichage Stats     │
+└──────────┬──────────┘
+           │
+           ▼
+┌─────────────────────┐
+│   Fin BANKDATA      │
+└─────────────────────┘
+```
+```
+
+### 🎓 Ce que vous apprenez
+
+- **Documentation automatique** : Bob analyse le code et génère une documentation structurée
+- **Compréhension batch** : Logique de traitement par lot avec VSAM et DB2
+- **Paramétrage** : Utilisation des PARM pour rendre le programme flexible
+- **Génération de données** : Techniques de création de jeux de test cohérents
+- **Gestion d'erreurs** : Patterns de gestion VSAM et DB2
+
+### 💡 Valeur Ajoutée Bob Premium for Z
+
+| Aspect | Documentation Manuelle | Avec Bob Premium for Z |
+|--------|------------------------|------------------------|
+| **Temps** | 1-2 jours d'analyse et rédaction | 5 minutes de génération |
+| **Qualité** | Variable selon rédacteur | Standardisée et exhaustive |
+| **Diagrammes** | Création manuelle fastidieuse | Génération automatique |
+| **Mise à jour** | Difficile à maintenir | Régénération instantanée |
+| **Couverture** | Souvent partielle | 100% du code analysé |
+
+**Gain** : **99.7% de réduction du temps**
+
+### 📝 Utilisation de la Documentation
+
+Cette documentation est utile pour :
+
+1. **Onboarding** : Nouveaux développeurs comprennent rapidement BANKDATA
+2. **Maintenance** : Référence lors de modifications du programme
+3. **Tests** : Comprendre comment générer des jeux de données
+4. **Migration** : Documenter le comportement avant modernisation
+5. **Audit** : Traçabilité de la logique d'initialisation
+
+---
+
+## Exercice 5 : Analyse des Règles Métier SORTCODE
 
 ## Exercice 4 : Analyse des Règles Métier SORTCODE
 
@@ -1776,6 +2146,7 @@ Vous avez terminé le lab Bob Premium for Z. En quelques heures, vous avez :
 ✅ Initialisé et analysé un workspace mainframe complexe
 ✅ Généré un inventaire applicatif exhaustif
 ✅ Créé un diagramme d'architecture professionnel
+✅ Documenté le programme batch BANKDATA
 ✅ Analysé 210 occurrences de règles métier
 ✅ Évalué l'impact d'un changement majeur
 ✅ Documenté un parcours utilisateur complet
@@ -1791,11 +2162,12 @@ Durant ce lab, vous avez utilisé différents modes Bob selon les besoins :
 | 1. Initialisation | 🧰 Z Code | Analyse de code mainframe et création de documentation technique |
 | 2. Inventaire | 🧰 Z Code | Scan et analyse exhaustive des composants COBOL |
 | 3. Architecture | 📐 Z Architect | Création de diagrammes et analyse des flux |
-| 4. Règles Métier | 🧰 Z Code | Extraction de patterns et règles métier du code |
-| 5. Analyse d'Impact | 📐 Z Architect | Évaluation d'impact et planification de changements |
-| 6. Parcours Utilisateur | ❓ Ask | Documentation non technique pour utilisateurs finaux |
-| 7. Faisabilité | 📐 Z Architect | Étude de faisabilité avec estimations et planification |
-| 8. Automatisation | 💻 Code | Création de Bobshells pour automatiser la documentation |
+| 4. Documentation BANKDATA | 🧰 Z Code | Documentation technique détaillée d'un programme batch |
+| 5. Règles Métier | 🧰 Z Code | Extraction de patterns et règles métier du code |
+| 6. Analyse d'Impact | 📐 Z Architect | Évaluation d'impact et planification de changements |
+| 7. Parcours Utilisateur | ❓ Ask | Documentation non technique pour utilisateurs finaux |
+| 8. Faisabilité | 📐 Z Architect | Étude de faisabilité avec estimations et planification |
+| 9. Automatisation | 💻 Code | Création de Bobshells pour automatiser la documentation |
 
 **Principe clé :** Choisir le bon mode selon la nature de la tâche maximise l'efficacité et la qualité des résultats.
 
@@ -1806,12 +2178,13 @@ Durant ce lab, vous avez utilisé différents modes Bob selon les besoins :
 | Initialisation | 2-3 jours | 3 minutes | 99.8% |
 | Inventaire | 1-2 semaines | 10 minutes | 99.5% |
 | Architecture | 2-3 jours | 5 minutes | 99.7% |
+| Documentation BANKDATA | 1-2 jours | 5 minutes | 99.7% |
 | Règles métier | 1 semaine | 10 minutes | 99.6% |
 | Analyse d'impact | 2 semaines | 15 minutes | 99.7% |
 | Parcours utilisateur | 3-4 jours | 10 minutes | 99.6% |
 | Étude de faisabilité | 1-2 semaines | 15 minutes | 99.7% |
 | Documentation automatique | 2-3 semaines | 3 minutes | 99.8% |
-| **TOTAL** | **10-15 semaines** | **71 minutes** | **99.6%** |
+| **TOTAL** | **11-17 semaines** | **76 minutes** | **99.6%** |
 
 ### 🚀 Prochaines Étapes
 
@@ -1819,7 +2192,7 @@ Maintenant que vous maîtrisez Bob Premium for Z, vous pouvez :
 
 1. **Appliquer ces techniques** à vos propres applications mainframe
 2. **Former votre équipe** avec ce lab
-3. **Automatiser la documentation** avec des Bobshells (Exercice 8)
+3. **Automatiser la documentation** avec des Bobshells (Exercice 9)
 4. **Accélérer les analyses d'impact** avant modifications
 5. **Améliorer la qualité** de vos livrables
 6. **Créer votre bibliothèque de Bobshells** pour automatiser vos tâches répétitives
@@ -1873,11 +2246,12 @@ Durant ce lab, vous avez généré :
 | AGENTS.md | 122 | Guide de référence |
 | CBSA-INVENTORY.md | 850+ | Inventaire complet |
 | CBSA-ARCHITECTURE.drawio | - | Diagramme visuel |
+| BANKDATA-docu-technique.md | 450+ | Documentation programme batch |
 | CBSA-SORTCODE-BUSINESS-RULES.md | 682 | Règles métier |
 | CBSA-SORTCODE-CHANGE-IMPACT.md | 782 | Analyse d'impact |
 | CBSA-USER-JOURNEY-CUSTOMER-ACCOUNTS.md | 485 | Guide utilisateur |
 | CBSA-EMAIL-ENHANCEMENT-GUIDE.md | 1247 | Guide d'évolution |
-| **TOTAL** | **4168+ lignes** | **Documentation complète** |
+| **TOTAL** | **4618+ lignes** | **Documentation complète** |
 
 ### 🎯 Valeur Métier
 
