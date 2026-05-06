@@ -456,6 +456,15 @@ Lors de la génération de documentation :
 - Référencer le programme ou module concerné
 - Exemple : `docs: add BNKMENU-analyse-flux-menu.md`
 ```
+### 💬 Prompt Bob
+
+```
+Ajoute une règle Bob : génére les documentations en français
+```
+
+### ✅ Résultat Attendu
+
+Bob met à jour le fichier **`AGENTS.md`** avec une nouvelle règle.
 
 ### 🎓 Ce que vous apprenez
 
