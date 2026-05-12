@@ -1266,7 +1266,7 @@ Réalise une analyse d'impact complète pour transformer le SORTCODE fixe en don
 **Changement proposé** : Modifier l'architecture pour supporter plusieurs codes de succursale (SORTCODE) au lieu d'une valeur unique codée en dur
 
 ---
-
+```
 ## 1. Résumé Exécutif
 
 ### Changement Proposé
@@ -1301,7 +1301,7 @@ Transformer l'application CBSA d'une architecture **mono-agence** (SORTCODE fixe
 ## 11. Alternatives Considérées
 ## 12. Métriques de Succès
 ## 13. Conclusion
-
+```
 ---
 
 ## Exercice 6 : Documentation du Parcours Utilisateur
@@ -1431,52 +1431,44 @@ Quel est le plan pour implémenter la recherche d'un client par email ?
 
 #### ✅ Résultat Attendu
 
-Bob crée **`docs/CBSA-plan-email-implementation.md`** (1,324 lignes) :
+Bob crée **`docs/CBSA-plan-recherche-email.md`** :
+```
+   ## 1. Résumé Exécutif
 
-**Plan en 6 sprints (12 semaines)** :
+   **Description du Changement** : Implémentation d'une nouvelle fonctionnalité de recherche de clients par adresse email dans l'application bancaire CBSA. Cette fonctionnalité permettra aux utilisateurs de rechercher des clients en utilisant une recherche partielle sur l'email (domaine ou début d'adresse).
 
-**Sprint 1-2 : Structures de données**
-- Ajout champ `CUSTOMER-EMAIL` (100 octets)
-- Ajout champ `CUSTOMER-EMAIL-VERIFIED` (1 octet)
-- Modification de 4 copybooks existants :
-  - `CUSTOMER.cpy` (structure principale)
-  - `CRECUST.cpy` (COMMAREA création)
-  - `INQCUST.cpy` (COMMAREA consultation)
-  - `UPDCUST.cpy` (COMMAREA mise à jour)
+   **Valeur Métier** : Améliore l'expérience utilisateur en permettant une recherche flexible des clients par email, facilitant l'identification rapide des clients sans nécessiter le numéro de client ou le code de tri. Particulièrement utile pour le support client et les opérations de service.
 
-**Sprint 3-5 : Programmes**
-- Création `INCUSTM.cbl` (recherche par email)
-- Modification `CRECUST.cbl` (ajout gestion email)
-- Modification `UPDCUST.cbl` (ajout mise à jour email)
-- Modification `BANKDATA.cbl` (initialisation batch)
+   **Risques Clés** :
+   1. Performance des requêtes LIKE sur DB2 avec volumes importants
+   2. Absence de champ email dans la structure CUSTOMER VSAM existante
+   3. Synchronisation des données email entre systèmes
 
-**Sprint 6-7 : Infrastructure VSAM**
-- Définition index alternatif (AIX)
-- Construction de l'index
-- Définition du PATH
-- Migration des données existantes
+   **Notes Workspace** : Tous les programmes analysés sont disponibles localement. Structure CUSTOMER actuelle ne contient pas de champ email.
 
-**Sprint 8-9 : Interface BMS**
-- Création écran `BNK1EML.bms`
-- Modification écrans existants si nécessaire
+   **Prérequis** : Aucune génération de data dictionary requise - les programmes existants sont déjà documentés.
 
-**Sprint 10-11 : Tests**
-- Tests unitaires (validation, recherche)
-- Tests d'intégration (flux complets)
-- Tests système (charge, concurrence)
-- Tests d'acceptation utilisateur (UAT)
+   ## 2. Prérequis
 
-**Sprint 12 : Déploiement**
-- Backup complet
-- Migration production
-- Formation utilisateurs
-- Documentation finale
+   ## 3. Exigences
 
-**Estimation globale** :
-- **Effort** : 12 semaines
-- **Coût** : $38,200
-- **Risque** : Moyen (migration VSAM)
-- **ROI** : 6-9 mois
+   ## 4. Objectifs et Non-Objectifs
+
+   ## 5. Analyse de l'État Actuel
+
+   ## 6. Conception de l'Implémentation
+
+   ## 7. Composants Affectés
+
+   ## 8. Modifications du Modèle de Données
+
+
+   ## 9. Risques et Mitigations
+
+   ## 10. Stratégie de Test
+
+   ## 11. Plan de Déploiement et Opérationnel
+```
 
 #### 🎓 Ce que vous apprenez
 
@@ -1616,12 +1608,12 @@ Le mode Z Code excelle dans la génération de code COBOL pour Z/OS.
 #### 💬 Prompt Bob
 
 ```
-Crée le programme INCUSTM selon le plan d'implémentation
+Crée le programme INQEMAIL selon le plan d'implémentation
 ```
 
 #### ✅ Résultat Attendu
 
-Bob développe **`baseupdated/cobol_src/INCUSTM.cbl`** (408 lignes) :
+Bob développe **`baseupdated/cobol_src/INQEMAIL.cbl`** :
 
 **Fonctionnalités implémentées** :
 
@@ -2745,5 +2737,6 @@ Propose une stratégie de migration pour [SYSTÈME]
 
 **Version** : 1.0  
 **Date** : 5 mai 2026  
+**Auteur** : Bob Premium for Z
 
 **Transformez votre façon de travailler avec le mainframe ! 🚀**
