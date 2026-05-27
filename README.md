@@ -17,4 +17,7 @@ The following lab **LabDiscoverCBSAGlobal** allows you to extend the analysis to
 
 Finally, the lab **LabSkillBuilderBob4z** allows you to experiment with creating a skill to optimize COBOL program generation.
 
-
+This Bobathon has been prepared by
+- Olivier VALLOD - Solution Architect & AI Engineer - IBM Client Engineering GEO (olivier.vallod@fr.ibm.com)
+- Stéphane FAURE - AI Engineer - IBM Client Engineering GEO (stef@fr.ibm.com)
+- Axel CHABAN - Tech Sales Z Devops - IBM Technology FRANCE (Axel.Chaban@ibm.com)
