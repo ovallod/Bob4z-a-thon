@@ -19,13 +19,14 @@
 8. [Exercice 2 : Génération de l'Inventaire Applicatif](#exercice-2--génération-de-linventaire-applicatif)
 9. [Exercice 3 : Création du Diagramme d'Architecture](#exercice-3--création-du-diagramme-darchitecture)
 10. [Exercice 4 : Documentation du Programme BANKDATA](#exercice-4--documentation-du-programme-bankdata)
-11. [Exercice 5 : Analyse des Règles Métier](#exercice-5--analyse-des-règles-métier)
-12. [Exercice 6 : Analyse d'Impact des Changements](#exercice-6--analyse-dimpact-des-changements)
-13. [Exercice 7 : Documentation du Parcours Utilisateur](#exercice-7--documentation-du-parcours-utilisateur)
-14. [Exercice 8 : Implémentation de la Recherche par Email](#exercice-8--implémentation-de-la-recherche-par-email)
-15. [Exercice 9 : Automatisation avec Bobshell Premium Z](#exercice-9--automatisation-avec-bobshell-premium-z)
-16. [Synthèse et Gains Mesurables](#-synthèse-et-gains-mesurables)
-17. [Conclusion](#7conclusion)
+11. [Exercice 5a : Analyse des Règles Métier](#exercice-5a--analyse-des-règles-métier)
+12. [Exercice 5b : Analyse des Règles Métier  et génération de code en ligne](#exercice-5b--analyse-des-règles-métier-et-génération-de-code-en-ligne)
+13. [Exercice 6 : Analyse d'Impact des Changements](#exercice-6--analyse-dimpact-des-changements)
+14. [Exercice 7 : Documentation du Parcours Utilisateur](#exercice-7--documentation-du-parcours-utilisateur)
+15. [Exercice 8 : Implémentation de la Recherche par Email](#exercice-8--implémentation-de-la-recherche-par-email)
+16. [Exercice 9 : Automatisation avec Bobshell](#exercice-9--automatisation-avec-bobshell)
+17. [Synthèse et Gains Mesurables](#6synthèse-et-gains-mesurables)
+18. [Conclusion](#7conclusion)
 
 ---
 
@@ -40,6 +41,7 @@
 - 📝 **Génération de documentation** technique et fonctionnelle
 - 🔍 **Analyse d'impact** pour les évolutions et modifications
 - 🎯 **Recommandations** pour la modernisation et l'optimisation
+- 🧰 **Génération de code** dans l'éditeur de texte ou à partir de l'invite de commande pour les cas plus complexes
 
 ### Pourquoi ce Lab ?
 
@@ -1117,7 +1119,7 @@ Cette documentation est utile pour :
 
 ---
 
-## Exercice 5 : Analyse des Règles Métier 
+## Exercice 5a : Analyse des Règles Métier 
 [↩️](#-table-des-matières)
 
 ### 🎯 Objectif
@@ -1246,6 +1248,85 @@ Distribution : Retourne le SORTCODE aux programmes appelants via COMMAREA
 
 ***987654*** - Code de succursale utilisé pour l'environnement de test/démonstration de l'application CBSA.
 
+
+---
+## Exercice 5b : Analyse des Règles Métier et génération de code en ligne
+[↩️](#-table-des-matières)
+
+### 🎯 Objectif
+
+Interroger Bob sur les règles métier codées dans un module, puis lui demander d'en créer une nouvelle depuis l'éditeur
+
+### 🔧 Mode Bob à Utiliser
+
+**Mode : 🧰 Z Code**
+
+Le mode Z Code excelle dans l'analyse de patterns et l'extraction des règles métier intégrées dans le code COBOL.
+
+### 📝 Contexte
+
+BNK1CAC est le programme de création de compte. Il vérifie les données d'entrée avec une liste de règles.
+
+### ✍️ Votre Prompt
+
+Extraire et sauvegarder dans un fichier md, les règles métier de @cobol_src/BNK1CAC.cbl
+
+**Attendu dans votre prompt :**
+- cibler le prompt sur le module cible
+- demander les règles métier implicites
+
+### ✅ Résultat Attendu
+
+Création du fichier BNK1CAC-business-rules.md.
+
+Il devrait contenir les Règles de Validation des Entrées
+- Validation du Numéro Client
+- Validation du Type de Compte
+- Validation du Taux d'Intérêt
+...
+
+Il y a trois vérifications sur le numéro client (longueur, pas de tirets bas, numérique). Nous allons en ajouter une nouvelle : le numéro client doit commencer par 99.
+
+Commentaire: le fichier devrait également contenir d'autres sections que "Règles de Validation des Entrées". Elles peuvent être considérées comme des règles plus techniques que métier et être supprimées).
+
+### ✅ Prompt pour Créer la nouvelle règle :
+
+Ouvrir BNK1CAC.cbl dans l'éditeur. Placer votre curseur au début de la ligne 458 (qui devrait être juste après la validation que le numéro client est numérique) et saisir dans l'éditeur
+
+```text
+ajouter un test pour vérifier qu'un numéro client doit commencer par 99
+```
+
+Une ampoule apparaît au début de la phrase. Cliquer dessus et sélectionner "Ajouter à IBM Bob"
+
+### ✅ Résultat Attendu 
+
+Dans la zone de prompt d'IBM Bob apparaît :
+```text
+base\cobol_src\BNK1CAC.cbl:458-458
+'''
+ajouter un test pour vérifier qu'un numéro client doit commencer par 99
+'''
+```
+
+Envoyer le prompt à IBM Bob
+
+### ✅ Résultat Attendu 
+1 - BNK1CAC est mis à jour avec une nouvelle règle commençant à la ligne 459 :
+```text
+           IF CUSTNOI(1:2) NOT = '99'
+              MOVE SPACES TO MESSAGEO
+              STRING 'Le numéro client doit commencer par 99'
+                    DELIMITED BY SIZE,
+                     ' ' DELIMITED BY SIZE
+                 INTO MESSAGEO
+              MOVE 'N' TO VALID-DATA-SW
+              MOVE -1 TO CUSTNOL
+              GO TO ED999
+           END-IF.
+```
+
+2 - BNK1CAC-business-rules.md est mis à jour avec la nouvelle règle et son message d'erreur associé.
 
 ---
 
@@ -1908,7 +1989,7 @@ PROCEDURE DIVISION.
 ```
 
 
-## Exercice 9 : Automatisation avec Bobshell Premium Z
+## Exercice 9 : Automatisation avec Bobshell
 [↩️](#-table-des-matières)
 
 ### 🎯 Objectif
@@ -2330,7 +2411,7 @@ filter:
 
 
 ---
-## 6.📊 Synthèse et Gains Mesurables
+## 6.Synthèse et Gains Mesurables
 [↩️](#-table-des-matières)
 
 ### Récapitulatif des Exercices
