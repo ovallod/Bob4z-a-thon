@@ -8,7 +8,6 @@ This lab demonstrates the use of the **Bob Premium for Z** skill to generate COB
 
 - VS Code with Z Open Editor installed
 - CBSA workspace open
-- Skill `cobol-generator-validator` available in `.bob/skills/`
 
 ## Defining Coding Standards
 
