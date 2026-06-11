@@ -2024,78 +2024,24 @@ Stocke chaque documentation dans docs/ avec le format de nommage : [PROGRAMME]-d
 
 ### ✅ Résultat Attendu
 
-Bob crée **`tools/generate-program-docs.bobshell`** :
+Bob crée **`./bobshells/generate-cobol-docs.sh`** :
 
-```yaml
-# Bobshell Premium Z - Documentation Automatique des Programmes
-# Version: 1.0
-# Description: Génère la documentation technique de tous les programmes COBOL
+```text
+Analyze COBOL programs in base/cobol_src/ to understand structure
+Design Bobshell script structure and documentation template
+Create the Bobshell script with documentation generation logic
+Test the script on a sample program
+Document the Bobshell usage
+```
+```text
+./bobshells/generate-cobol-docs.sh BNKMENU
 
-name: "Documentation Automatique CBSA"
-version: "1.0"
-mode: "z-code"
+[0;34m========================================[0m
+[0;34mGénérateur de Documentation COBOL[0m
+[0;34m========================================[0m
 
-# Configuration
-config:
-  source_dir: "base/cobol_src"
-  output_dir: "docs"
-  file_pattern: "*.cbl"
-  naming_convention: "{PROGRAM}-docu-technique.md"
-
-# Étapes d'exécution
-steps:
-  - name: "Scan des programmes"
-    action: "list_files"
-    params:
-      directory: "${source_dir}"
-      pattern: "${file_pattern}"
-    output: "program_list"
-
-  - name: "Documentation de chaque programme"
-    action: "for_each"
-    items: "${program_list}"
-    steps:
-      - name: "Analyse du programme"
-        action: "analyze_program"
-        params:
-          program: "${item}"
-          analysis_type: "complete"
-        output: "program_analysis"
-
-      - name: "Génération documentation"
-        action: "generate_doc"
-        params:
-          template: "technical_doc"
-          data: "${program_analysis}"
-          sections:
-            - "description"
-            - "business_objective"
-            - "copybooks"
-            - "files_accessed"
-            - "programs_called"
-            - "code_structure"
-            - "main_variables"
-            - "business_rules"
-        output: "documentation"
-
-      - name: "Sauvegarde documentation"
-        action: "write_file"
-        params:
-          path: "${output_dir}/${item.name}-docu-technique.md"
-          content: "${documentation}"
-
-  - name: "Génération index"
-    action: "generate_index"
-    params:
-      title: "Index de Documentation CBSA"
-      output: "${output_dir}/CBSA-inv-documentation.md"
-      items: "${program_list}"
-
-# Rapport final
-report:
-  summary: true
-  statistics: true
-  errors: true
+[1;33mGénération de la documentation pour BNKMENU...[0m
+[0;32m✓ Documentation générée: docs/BNKMENU-docu-technique.md[0m
 ```
 
 ### ⚙️ Exécution du Bobshell
@@ -2103,259 +2049,35 @@ report:
 #### 💬 Prompt Bob
 
 ```
-Exécute le Bobshell generate-program-docs.bobshell
+Exécute le Bobshell pour le programme BNK1CRA
 ```
 
 #### ✅ Résultat de l'Exécution
 
-Bob exécute le Bobshell et génère :
+Documentation technique générée avec succès pour BNK1CRA
 
-**Console de sortie** :
-```
-╔════════════════════════════════════════════════════════════╗
-║  BOBSHELL PREMIUM Z - Exécution en cours                   ║
-╠════════════════════════════════════════════════════════════╣
-║  Script : generate-program-docs.bobshell                   ║
-║  Mode   : z-code                                           ║
-║  Début  : 2026-05-05 15:20:00                             ║
-╚════════════════════════════════════════════════════════════╝
+✅ Résultat
+Fichier créé : docs/BNK1CRA-docu-technique.md
 
-[1/4] Scan des programmes...
-      ✓ 28 programmes COBOL détectés dans base/cobol_src/
+📊 Contenu Extrait
+Description : Programme Credit/Debit de l'application bancaire BMS
+Objectif métier : Programme de présentation BMS pour interface 3270
+Copybooks : ABNDINFO, BNK1CDM, DFHAID
+Structure : 14 sections, 20+ paragraphes
+Variables : 20 variables principales identifiées
+Règles métier : Validation des montants, calculs de débit/crédit
+🎯 Bobshell Opérationnel
+Le script bobshells/generate-cobol-docs.sh est maintenant prêt à générer la documentation pour les 30 programmes COBOL du projet.
 
-[2/4] Documentation de chaque programme...
-      ✓ ABNDPROC.cbl    → docs/ABNDPROC-docu-technique.md
-      ✓ BANKDATA.cbl    → docs/BANKDATA-docu-technique.md
-      ✓ BNK1CAC.cbl     → docs/BNK1CAC-docu-technique.md
-      ✓ BNK1CCA.cbl     → docs/BNK1CCA-docu-technique.md
-      ✓ BNK1CCS.cbl     → docs/BNK1CCS-docu-technique.md
-      ✓ BNK1CRA.cbl     → docs/BNK1CRA-docu-technique.md
-      ✓ BNK1DAC.cbl     → docs/BNK1DAC-docu-technique.md
-      ✓ BNK1DCS.cbl     → docs/BNK1DCS-docu-technique.md
-      ✓ BNK1TFN.cbl     → docs/BNK1TFN-docu-technique.md
-      ✓ BNK1UAC.cbl     → docs/BNK1UAC-docu-technique.md
-      ✓ BNKMENU.cbl     → docs/BNKMENU-docu-technique.md
-      ✓ CRDTAGY1.cbl    → docs/CRDTAGY1-docu-technique.md
-      ✓ CRDTAGY2.cbl    → docs/CRDTAGY2-docu-technique.md
-      ✓ CRDTAGY3.cbl    → docs/CRDTAGY3-docu-technique.md
-      ✓ CRDTAGY4.cbl    → docs/CRDTAGY4-docu-technique.md
-      ✓ CRDTAGY5.cbl    → docs/CRDTAGY5-docu-technique.md
-      ✓ CREACC.cbl      → docs/CREACC-docu-technique.md
-      ✓ CRECUST.cbl     → docs/CRECUST-docu-technique.md
-      ✓ DBCRFUN.cbl     → docs/DBCRFUN-docu-technique.md
-      ✓ DELACC.cbl      → docs/DELACC-docu-technique.md
-      ✓ DELCUS.cbl      → docs/DELCUS-docu-technique.md
-      ✓ GETCOMPY.cbl    → docs/GETCOMPY-docu-technique.md
-      ✓ GETSCODE.cbl    → docs/GETSCODE-docu-technique.md
-      ✓ INQACC.cbl      → docs/INQACC-docu-technique.md
-      ✓ INQACCCU.cbl    → docs/INQACCCU-docu-technique.md
-      ✓ INQCUST.cbl     → docs/INQCUST-docu-technique.md
-      ✓ UPDACC.cbl      → docs/UPDACC-docu-technique.md
-      ✓ UPDCUST.cbl     → docs/UPDCUST-docu-technique.md
+Usage :
 
-[3/4] Génération index...
-      ✓ docs/CBSA-inv-documentation.md créé
+# Programme individuel
+./bobshells/generate-cobol-docs.sh BNK1CRA
 
-[4/4] Rapport final...
+# Tous les programmes
+./bobshells/generate-cobol-docs.sh
 
-╔════════════════════════════════════════════════════════════╗
-║  BOBSHELL PREMIUM Z - Exécution terminée                   ║
-╠════════════════════════════════════════════════════════════╣
-║  Statut    : ✅ SUCCÈS                                     ║
-║  Durée     : 3 minutes 42 secondes                        ║
-║  Fichiers  : 29 documents générés                         ║
-║  Lignes    : 18,450 lignes de documentation               ║
-║  Erreurs   : 0                                            ║
-╚════════════════════════════════════════════════════════════╝
-```
-
-### 📄 Exemple de Documentation Générée
-
-**Fichier : `docs/BNKMENU-docu-technique.md`** (extrait)
-
-```markdown
-# Documentation Technique - BNKMENU
-
-**Programme** : BNKMENU.cbl  
-**Type** : Programme de présentation CICS  
-**Auteur** : Généré par Bob Premium for Z  
-**Date** : 2026-05-05
-
----
-
-## Description
-
-BNKMENU est le programme de menu principal de l'application CBSA. Il gère l'affichage du menu et le routage vers les différentes fonctionnalités de l'application.
-
-## Objectif Métier
-
-- Afficher le menu principal aux utilisateurs
-- Capturer le choix de l'utilisateur
-- Router vers la transaction appropriée
-- Gérer les erreurs de saisie
-
-## Copybooks Utilisés
-
-| Copybook | Description | Usage |
-|----------|-------------|-------|
-| BANKMAP.cpy | Définition de la map BMS | Écran menu |
-| RESPSTR.cpy | Codes de réponse | Gestion erreurs |
-
-## Fichiers Accédés
-
-Aucun fichier directement accédé (programme de routage).
-
-## Programmes Appelés
-
-Aucun programme appelé directement. Utilise CICS RETURN TRANSID pour router.
-
-## Structure du Code
-
-### Sections Principales
-
-1. **MAIN-PROCESSING**
-   - Point d'entrée du programme
-   - Gestion du flux principal
-
-2. **SEND-MENU**
-   - Envoi de la map menu à l'écran
-   - Gestion des attributs d'affichage
-
-3. **RECEIVE-MENU**
-   - Réception de la saisie utilisateur
-   - Validation du choix
-
-4. **PROCESS-CHOICE**
-   - Évaluation du choix utilisateur
-   - Routage vers la transaction appropriée
-
-5. **SEND-ERROR**
-   - Affichage des messages d'erreur
-   - Gestion des cas d'erreur
-
-### Paragraphes
-
-- `MAIN-PROCESSING` : Logique principale
-- `SEND-MENU` : Envoi écran
-- `RECEIVE-MENU` : Réception saisie
-- `PROCESS-CHOICE` : Traitement choix
-- `ROUTE-TO-TRANSACTION` : Routage CICS
-- `SEND-ERROR` : Gestion erreurs
-- `GET-ME-OUT-OF-HERE` : Terminaison
-
-## Variables Principales
-
-| Variable | Type | Description |
-|----------|------|-------------|
-| WS-MENU-OPTION | PIC X | Choix utilisateur (1-9) |
-| WS-TRANSID | PIC X(4) | Code transaction cible |
-| WS-ERROR-MSG | PIC X(79) | Message d'erreur |
-| EIBAID | CICS | Touche appuyée |
-
-## Règles Métier
-
-1. **Validation du choix** : Le choix doit être entre 1 et 9
-2. **Routage par TRANSID** : Chaque option correspond à une transaction CICS
-3. **Gestion PF3** : Touche PF3 termine la session
-4. **Gestion CLEAR** : Touche CLEAR réaffiche le menu
-
-## Transactions Associées
-
-| Option | TRANSID | Description |
-|--------|---------|-------------|
-| 1 | OCCA | Consultation de comptes |
-| 2 | OCRA | Création de compte |
-| 3 | OUCA | Mise à jour client |
-| 4 | OTFN | Transfert de fonds |
-| 5 | ODAC | Débit/Crédit compte |
-| 6 | ODCS | Suppression compte |
-
-## Dépendances
-
-### Entrantes
-- Appelé par : Transaction OMEN (menu principal)
-
-### Sortantes
-- Appelle : Aucun (routage CICS uniquement)
-
-## Notes Techniques
-
-- Programme sans état (stateless)
-- Utilise CICS RETURN TRANSID pour navigation
-- Pas d'accès base de données
-- Gestion d'erreur minimale (programme simple)
-
----
-
-*Documentation générée automatiquement par Bob Premium for Z*
-```
-
-### 📊 Fichier Index Généré
-
-**Fichier : `docs/CBSA-inv-documentation.md`**
-
-```markdown
-# Index de Documentation CBSA
-
-**Application** : CICS Banking Sample Application  
-**Date de génération** : 2026-05-05  
-**Nombre de programmes** : 28
-
----
-
-## Programmes de Présentation (UI)
-
-| Programme | Description | Documentation |
-|-----------|-------------|---------------|
-| BNKMENU | Menu principal | [BNKMENU-docu-technique.md](BNKMENU-docu-technique.md) |
-| BNK1CAC | Création compte - Écran | [BNK1CAC-docu-technique.md](BNK1CAC-docu-technique.md) |
-| BNK1CCA | Consultation compte - Écran | [BNK1CCA-docu-technique.md](BNK1CCA-docu-technique.md) |
-| BNK1CCS | Consultation compte - Contrôleur | [BNK1CCS-docu-technique.md](BNK1CCS-docu-technique.md) |
-| BNK1CRA | Création compte - Contrôleur | [BNK1CRA-docu-technique.md](BNK1CRA-docu-technique.md) |
-| BNK1DAC | Suppression compte - Écran | [BNK1DAC-docu-technique.md](BNK1DAC-docu-technique.md) |
-| BNK1DCS | Suppression compte - Contrôleur | [BNK1DCS-docu-technique.md](BNK1DCS-docu-technique.md) |
-| BNK1TFN | Transfert - Écran | [BNK1TFN-docu-technique.md](BNK1TFN-docu-technique.md) |
-| BNK1UAC | Mise à jour compte - Écran | [BNK1UAC-docu-technique.md](BNK1UAC-docu-technique.md) |
-
-## Programmes de Service (Business Logic)
-
-| Programme | Description | Documentation |
-|-----------|-------------|---------------|
-| CREACC | Création de compte | [CREACC-docu-technique.md](CREACC-docu-technique.md) |
-| CRECUST | Création de client | [CRECUST-docu-technique.md](CRECUST-docu-technique.md) |
-| DBCRFUN | Débit/Crédit | [DBCRFUN-docu-technique.md](DBCRFUN-docu-technique.md) |
-| DELACC | Suppression compte | [DELACC-docu-technique.md](DELACC-docu-technique.md) |
-| DELCUS | Suppression client | [DELCUS-docu-technique.md](DELCUS-docu-technique.md) |
-| INQACC | Consultation compte | [INQACC-docu-technique.md](INQACC-docu-technique.md) |
-| INQACCCU | Consultation comptes client | [INQACCCU-docu-technique.md](INQACCCU-docu-technique.md) |
-| INQCUST | Consultation client | [INQCUST-docu-technique.md](INQCUST-docu-technique.md) |
-| UPDACC | Mise à jour compte | [UPDACC-docu-technique.md](UPDACC-docu-technique.md) |
-| UPDCUST | Mise à jour client | [UPDCUST-docu-technique.md](UPDCUST-docu-technique.md) |
-
-## Programmes Utilitaires
-
-| Programme | Description | Documentation |
-|-----------|-------------|---------------|
-| ABNDPROC | Gestionnaire d'erreurs | [ABNDPROC-docu-technique.md](ABNDPROC-docu-technique.md) |
-| GETCOMPY | Récupération données société | [GETCOMPY-docu-technique.md](GETCOMPY-docu-technique.md) |
-| GETSCODE | Récupération SORTCODE | [GETSCODE-docu-technique.md](GETSCODE-docu-technique.md) |
-
-## Programmes Batch
-
-| Programme | Description | Documentation |
-|-----------|-------------|---------------|
-| BANKDATA | Initialisation données | [BANKDATA-docu-technique.md](BANKDATA-docu-technique.md) |
-
-## Programmes Externes (Simulation)
-
-| Programme | Description | Documentation |
-|-----------|-------------|---------------|
-| CRDTAGY1-5 | Agences de crédit simulées | [CRDTAGY1-docu-technique.md](CRDTAGY1-docu-technique.md) |
-
----
-
-*Index généré automatiquement par Bob Premium for Z*
-```
+Documentation complète : bobshells/README-generate-cobol-docs.md
 
 ### 🎓 Ce que vous apprenez
 
