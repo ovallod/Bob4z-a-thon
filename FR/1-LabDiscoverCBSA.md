@@ -24,7 +24,7 @@
 13. [Exercice 6 : Analyse d'Impact des Changements](#exercice-6--analyse-dimpact-des-changements)
 14. [Exercice 7 : Documentation du Parcours Utilisateur](#exercice-7--documentation-du-parcours-utilisateur)
 15. [Exercice 8 : Implémentation de la Recherche par Email](#exercice-8--implémentation-de-la-recherche-par-email)
-16. [Exercice 9 : Automatisation avec Bobshell](#exercice-9--automatisation-avec-bobshell)
+16. [Exercice 9 : Automatisation avec Bobshell (en cours de développement)](#exercice-9--automatisation-avec-bobshell)
 17. [Synthèse et Gains Mesurables](#6synthèse-et-gains-mesurables)
 18. [Conclusion](#7conclusion)
 
@@ -1991,6 +1991,8 @@ PROCEDURE DIVISION.
 
 ## Exercice 9 : Automatisation avec Bobshell
 [↩️](#-table-des-matières)
+
+### Exercice en cours de développement (ne pas le faire)
 
 ### 🎯 Objectif
 

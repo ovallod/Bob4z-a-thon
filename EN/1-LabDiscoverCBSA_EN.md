@@ -24,7 +24,7 @@
 13. [Exercise 6: Change Impact Analysis](#exercise-6-change-impact-analysis)
 14. [Exercise 7: User Journey Documentation](#exercise-7-user-journey-documentation)
 15. [Exercise 8: Email Search Implementation](#exercise-8-email-search-implementation)
-16. [Exercise 9: Automation with Bobshell Premium Z](#exercise-9-automation-with-bobshell-premium-z)
+16. [Exercise 9: Automation with Bobshell Premium Z (not yet available)](#exercise-9-automation-with-bobshell-premium-z)
 17. [Summary and Measurable Gains](#summary-and-measurable-gains)
 18. [Conclusion](#7conclusion)
 
@@ -2625,6 +2625,8 @@ PROCEDURE DIVISION.
 
 ## Exercise 9: Automation with Bobshell Premium Z
 [↩️](#-table-of-contents)
+
+### This exercise is under devlopment. Please skip it.
 
 ### 🎯 Objective
 
