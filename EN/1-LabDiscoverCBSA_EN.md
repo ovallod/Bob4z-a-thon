@@ -19,13 +19,14 @@
 8. [Exercise 2: Application Inventory Generation](#exercise-2-application-inventory-generation)
 9. [Exercise 3: Architecture Diagram Creation](#exercise-3-architecture-diagram-creation)
 10. [Exercise 4: BANKDATA Program Documentation](#exercise-4-bankdata-program-documentation)
-11. [Exercise 5: Business Rules Analysis](#exercise-5-business-rules-analysis)
-12. [Exercise 6: Change Impact Analysis](#exercise-6-change-impact-analysis)
-13. [Exercise 7: User Journey Documentation](#exercise-7-user-journey-documentation)
-14. [Exercise 8: Email Search Implementation](#exercise-8-email-search-implementation)
-15. [Exercise 9: Automation with Bobshell Premium Z](#exercise-9-automation-with-bobshell-premium-z)
-16. [Summary and Measurable Gains](#summary-and-measurable-gains)
-17. [Conclusion](#7conclusion)
+11. [Exercise 5a: Business Rules Analysis](#exercise-5a-business-rules-analysis)
+12. [Exercise 5b: Business Rules Analysis and inline code generation](#exercise-5b-business-rules-analysis-and-inline-code-generation)
+13. [Exercise 6: Change Impact Analysis](#exercise-6-change-impact-analysis)
+14. [Exercise 7: User Journey Documentation](#exercise-7-user-journey-documentation)
+15. [Exercise 8: Email Search Implementation](#exercise-8-email-search-implementation)
+16. [Exercise 9: Automation with Bobshell Premium Z (not yet available)](#exercise-9-automation-with-bobshell-premium-z)
+17. [Summary and Measurable Gains](#summary-and-measurable-gains)
+18. [Conclusion](#7conclusion)
 
 ---
 
@@ -612,7 +613,7 @@ Write your own prompt to request a complete CBSA application inventory. Feel fre
 ### ✅ Recommended Prompt
 
 ```text
-Generate a complete inventory of the CBSA application, with for each program, their type, role, and dependencies (used copybooks, BMS screens, DB2 tables and files used - with access mode -, queues, and called programs). Use the metadata for that.
+Generate a complete inventory of the CBSA application, with for each program, their type, role, and dependencies (used copybooks, BMS screens, DB2 tables and files used - with access mode -, queues, and called programs).
 ```
 
 ### 🔀 Prompt Variants
@@ -648,537 +649,304 @@ Contains:
 | Dependencies difficult to trace | Complete dependency graph |
 
 ---
+════════════════════════════╗
+║  BOBSHELL PREMIUM Z - Execution in progress                ║
+╠════════════════════════════════════════════════════════════╣
+║  Script: generate-program-docs.bobshell                    ║
+║  Mode  : z-code                                            ║
+║  Start : 2026-05-05 15:20:00                              ║
+╚════════════════════════════════════════════════════════════╝
 
-## Exercise 3: Architecture Diagram Creation
-[↩️](#-table-of-contents)
+[1/4] Program scan...
+      ✓ 28 COBOL programs detected in base/cobol_src/
 
-### 🎯 Objective
+[2/4] Documentation of each program...
+      ✓ ABNDPROC.cbl    → docs/ABNDPROC-docu-technique.md
+      ✓ BANKDATA.cbl    → docs/BANKDATA-docu-technique.md
+      ✓ BNK1CAC.cbl     → docs/BNK1CAC-docu-technique.md
+      ✓ BNK1CCA.cbl     → docs/BNK1CCA-docu-technique.md
+      ✓ BNK1CCS.cbl     → docs/BNK1CCS-docu-technique.md
+      ✓ BNK1CRA.cbl     → docs/BNK1CRA-docu-technique.md
+      ✓ BNK1DAC.cbl     → docs/BNK1DAC-docu-technique.md
+      ✓ BNK1DCS.cbl     → docs/BNK1DCS-docu-technique.md
+      ✓ BNK1TFN.cbl     → docs/BNK1TFN-docu-technique.md
+      ✓ BNK1UAC.cbl     → docs/BNK1UAC-docu-technique.md
+      ✓ BNKMENU.cbl     → docs/BNKMENU-docu-technique.md
+      ✓ CRDTAGY1.cbl    → docs/CRDTAGY1-docu-technique.md
+      ✓ CRDTAGY2.cbl    → docs/CRDTAGY2-docu-technique.md
+      ✓ CRDTAGY3.cbl    → docs/CRDTAGY3-docu-technique.md
+      ✓ CRDTAGY4.cbl    → docs/CRDTAGY4-docu-technique.md
+      ✓ CRDTAGY5.cbl    → docs/CRDTAGY5-docu-technique.md
+      ✓ CREACC.cbl      → docs/CREACC-docu-technique.md
+      ✓ CRECUST.cbl     → docs/CRECUST-docu-technique.md
+      ✓ DBCRFUN.cbl     → docs/DBCRFUN-docu-technique.md
+      ✓ DELACC.cbl      → docs/DELACC-docu-technique.md
+      ✓ DELCUS.cbl      → docs/DELCUS-docu-technique.md
+      ✓ GETCOMPY.cbl    → docs/GETCOMPY-docu-technique.md
+      ✓ GETSCODE.cbl    → docs/GETSCODE-docu-technique.md
+      ✓ INQACC.cbl      → docs/INQACC-docu-technique.md
+      ✓ INQACCCU.cbl    → docs/INQACCCU-docu-technique.md
+      ✓ INQCUST.cbl     → docs/INQCUST-docu-technique.md
+      ✓ UPDACC.cbl      → docs/UPDACC-docu-technique.md
+      ✓ UPDCUST.cbl     → docs/UPDCUST-docu-technique.md
 
-Create a visual architecture diagram in Draw.io format showing application layers and data flows.
+[3/4] Index generation...
+      ✓ docs/CBSA-inv-documentation.md created
 
-### 🔧 Bob Mode to Use
+[4/4] Final report...
 
-**Mode: 📐 Z Architect**
-
-Z Architect mode is specialized in creating architecture diagrams and analyzing application flows.
-
-### 📝 Context
-
-The textual inventory is useful, but a visual representation is essential for communicating architecture.
-
-### ✍️ Your Prompt
-
-Write your own prompt to request a visual architecture diagram of the application.
-
-**Expected in your prompt:**
-- Specify expected format (Draw.io)
-- Request application layers
-- Request key flows and dependencies
-- Request integration of external resources and data
-
-### ✅ Recommended Prompt
-
-```text
-Build an architecture diagram (in draw.io) illustrating the dependencies of CBSA application programs.
+╔════════════════════════════════════════════════════════════╗
+║  BOBSHELL PREMIUM Z - Execution completed                  ║
+╠════════════════════════════════════════════════════════════╣
+║  Status   : ✅ SUCCESS                                     ║
+║  Duration : 3 minutes 42 seconds                          ║
+║  Files    : 29 documents generated                        ║
+║  Lines    : 18,450 lines of documentation                 ║
+║  Errors   : 0                                             ║
+╚════════════════════════════════════════════════════════════╝
 ```
 
+### 📄 Example of Generated Documentation
 
-### 🔀 Prompt Variants
+**File: `docs/BNKMENU-docu-technique.md`** (excerpt)
 
-```text
-Produce a Draw.io diagram of CBSA architecture with functional layers, components, and data flows.
-```
+```markdown
+# Technical Documentation - BNKMENU
 
-```text
-Visually document CBSA architecture in a Draw.io file representing programs, databases, and major dependencies.
-```
-
-### ✅ Expected Result
-
-**File created: `docs/CBSA-ARCHITECTURE.drawio`**
-
-Editable diagram showing 4 layers:
-- Presentation (3270 terminals)
-- Business logic (CICS programs)
-- Data access (Db2)
-- External services (credit agencies)
-
-Note that you can improve the graph with additional prompts, such as:
-```text
-Modify the diagram with straight links (non-orthogonal).
-```
-```text
-In the diagram, distinguish different types of access (SELECT, INSERT, DELETE, UPDATE) on tables, with distinct colors.
-```
-```text
-change @docs/CBSA-archi-dependances.drawio so that all texts are written in black
-```
-
-**Compare this result with that of the prompt:**
-
-```text
-generate a program call graph
-```
-
-### 💡 Bob Premium for Z Added Value
-
-| Without Bob | With Bob Premium for Z |
-|----------|------------------------|
-| 2-3 days of manual creation | 5 minutes of automatic generation |
-| Static diagram (PowerPoint) | Editable format (Draw.io) |
-| Difficult update | Easy regeneration |
+**Program**: BNKMENU.cbl  
+**Type**: CICS presentation program  
+**Author**: Generated by Bob Premium for Z  
+**Date**: 2026-05-05
 
 ---
 
-## Exercise 4: BANKDATA Program Documentation
-[↩️](#-table-of-contents)
-
-### 🎯 Objective
-
-Generate complete technical documentation of the BANKDATA batch program that initializes application data.
-
-### 🔧 Bob Mode to Use
-
-**Mode: 🧰 Z Code**
-
-Z Code mode is specialized in detailed analysis and documentation of COBOL programs.
-
-### 📝 Context
-
-BANKDATA is the batch data initialization program. It is critical to understand:
-- How data is generated
-- Which structures are initialized
-- Test data generation rules
-- Dependencies with VSAM and DB2
-
-### ✍️ Your Prompt
-
-Write your own prompt to request complete technical documentation of the [`BANKDATA`](base/cobol_src/BANKDATA.cbl) program.
-
-**Expected in your prompt:**
-- Explicitly name the target program
-- Request to explain or document the pgm
-- You are not required to specify explanation sections, Bob Premium for Z providing a default document structure.
-
-### ✅ Recommended Prompt
-
-```text
-Explain the BANKDATA pgm
-```
-
-### 🔀 Prompt Variants
-
-```text
-Generate BANKDATA documentation.
-```
-**Notice that you can generate a formated documentation using the reserverd word `/generate-doc`. Then you will observe that a specific skill of Premium Package for Z is used for this generation.**
-
-```text
-/generate-doc BANKDATA
-````
-
-
-### ✅ Expected Result
-
-Bob Premium for Z uses a specialized skill to generate detailed technical documents from COBOL source code (whole-file-explanation) and a specific tool (explanation_type). If you haven't specified who the explanation is for, Bob will offer to choose between 3 profiles: ARCHITECT, DEVELOPER, BUSINESS.
-
-If you request an explanation, Bob may not save it to a file. You must then explicitly request it.
-```text
-save the BANKDATA explanation
-```
-
-**File created: `docs/BANKDATA-xxx-xxxxxxx.md`**
-
-Structured document containing:
-
-#### 1. Overview
-
-```markdown
-# Technical Documentation - BANKDATA
-
-**Program**: BANKDATA.cbl
-**Type**: Batch initialization program
-**Language**: IBM Enterprise COBOL for z/OS
-**Author**: JON COLLETT
-
 ## Description
 
-BANKDATA is the batch program responsible for initializing data
-for the CBSA banking application. It generates and populates:
-- CUSTOMER VSAM file (customer data)
-- ACCOUNT DB2 table (bank accounts)
+BNKMENU is the main menu program of the CBSA application. It handles menu display and routing to different application functionalities.
 
 ## Business Objective
 
-Create a coherent test data set for the CBSA application with:
-- Parameterizable customer generation
-- Automatic creation of associated accounts
-- Realistic data (names, addresses, balances)
-- Mass generation support
+- Display main menu to users
+- Capture user choice
+- Route to appropriate transaction
+- Handle input errors
+
+## Used Copybooks
+
+| Copybook | Description | Usage |
+|----------|-------------|-------|
+| BANKMAP.cpy | BMS map definition | Menu screen |
+| RESPSTR.cpy | Response codes | Error handling |
+
+## Accessed Files
+
+No files directly accessed (routing program).
+
+## Called Programs
+
+No programs directly called. Uses CICS RETURN TRANSID for routing.
+
+## Code Structure
+
+### Main Sections
+
+1. **MAIN-PROCESSING**
+   - Program entry point
+   - Main flow management
+
+2. **SEND-MENU**
+   - Send menu map to screen
+   - Display attribute management
+
+3. **RECEIVE-MENU**
+   - Receive user input
+   - Choice validation
+
+4. **PROCESS-CHOICE**
+   - Evaluate user choice
+   - Route to appropriate transaction
+
+5. **SEND-ERROR**
+   - Display error messages
+   - Error case handling
+
+### Paragraphs
+
+- `MAIN-PROCESSING`: Main logic
+- `SEND-MENU`: Screen send
+- `RECEIVE-MENU`: Input receive
+- `PROCESS-CHOICE`: Choice processing
+- `ROUTE-TO-TRANSACTION`: CICS routing
+- `SEND-ERROR`: Error handling
+- `GET-ME-OUT-OF-HERE`: Termination
+
+## Main Variables
+
+| Variable | Type | Description |
+|----------|------|-------------|
+| WS-MENU-OPTION | PIC X | User choice (1-9) |
+| WS-TRANSID | PIC X(4) | Target transaction code |
+| WS-ERROR-MSG | PIC X(79) | Error message |
+| EIBAID | CICS | Key pressed |
+
+## Business Rules
+
+1. **Choice validation**: Choice must be between 1 and 9
+2. **TRANSID routing**: Each option corresponds to a CICS transaction
+3. **PF3 handling**: PF3 key terminates session
+4. **CLEAR handling**: CLEAR key redisplays menu
+
+## Associated Transactions
+
+| Option | TRANSID | Description |
+|--------|---------|-------------|
+| 1 | OCCA | Account inquiry |
+| 2 | OCRA | Account creation |
+| 3 | OUCA | Customer update |
+| 4 | OTFN | Fund transfer |
+| 5 | ODAC | Account debit/credit |
+| 6 | ODCS | Account deletion |
+
+## Dependencies
+
+### Inbound
+- Called by: OMEN transaction (main menu)
+
+### Outbound
+- Calls: None (CICS routing only)
+
+## Technical Notes
+
+- Stateless program
+- Uses CICS RETURN TRANSID for navigation
+- No database access
+- Minimal error handling (simple program)
+
+---
+
+*Documentation automatically generated by Bob Premium for Z*
 ```
 
-#### 2. Input Parameters
+### 📊 Generated Index File
+
+**File: `docs/CBSA-inv-documentation.md`**
 
 ```markdown
-## Input Parameters (PARM)
+# CBSA Documentation Index
 
-...
+**Application**: CICS Banking Sample Application  
+**Generation date**: 2026-05-05  
+**Number of programs**: 28
 
-#### 3. Data Structures
+---
 
-...
+## Presentation Programs (UI)
 
-#### 4. Processing Logic
+| Program | Description | Documentation |
+|-----------|-------------|---------------|
+| BNKMENU | Main menu | [BNKMENU-docu-technique.md](BNKMENU-docu-technique.md) |
+| BNK1CAC | Account creation - Screen | [BNK1CAC-docu-technique.md](BNK1CAC-docu-technique.md) |
+| BNK1CCA | Account inquiry - Screen | [BNK1CCA-docu-technique.md](BNK1CCA-docu-technique.md) |
+| BNK1CCS | Account inquiry - Controller | [BNK1CCS-docu-technique.md](BNK1CCS-docu-technique.md) |
+| BNK1CRA | Account creation - Controller | [BNK1CRA-docu-technique.md](BNK1CRA-docu-technique.md) |
+| BNK1DAC | Account deletion - Screen | [BNK1DAC-docu-technique.md](BNK1DAC-docu-technique.md) |
+| BNK1DCS | Account deletion - Controller | [BNK1DCS-docu-technique.md](BNK1DCS-docu-technique.md) |
+| BNK1TFN | Transfer - Screen | [BNK1TFN-docu-technique.md](BNK1TFN-docu-technique.md) |
+| BNK1UAC | Account update - Screen | [BNK1UAC-docu-technique.md](BNK1UAC-docu-technique.md) |
 
-...
+## Service Programs (Business Logic)
 
-#### 5. Used Copybooks
+| Program | Description | Documentation |
+|-----------|-------------|---------------|
+| CREACC | Account creation | [CREACC-docu-technique.md](CREACC-docu-technique.md) |
+| CRECUST | Customer creation | [CRECUST-docu-technique.md](CRECUST-docu-technique.md) |
+| DBCRFUN | Debit/Credit | [DBCRFUN-docu-technique.md](DBCRFUN-docu-technique.md) |
+| DELACC | Account deletion | [DELACC-docu-technique.md](DELACC-docu-technique.md) |
+| DELCUS | Customer deletion | [DELCUS-docu-technique.md](DELCUS-docu-technique.md) |
+| INQACC | Account inquiry | [INQACC-docu-technique.md](INQACC-docu-technique.md) |
+| INQACCCU | Customer accounts inquiry | [INQACCCU-docu-technique.md](INQACCCU-docu-technique.md) |
+| INQCUST | Customer inquiry | [INQCUST-docu-technique.md](INQCUST-docu-technique.md) |
+| UPDACC | Account update | [UPDACC-docu-technique.md](UPDACC-docu-technique.md) |
+| UPDCUST | Customer update | [UPDCUST-docu-technique.md](UPDCUST-docu-technique.md) |
 
-...
+## Utility Programs
 
-...
+| Program | Description | Documentation |
+|-----------|-------------|---------------|
+| ABNDPROC | Error handler | [ABNDPROC-docu-technique.md](ABNDPROC-docu-technique.md) |
+| GETCOMPY | Company data retrieval | [GETCOMPY-docu-technique.md](GETCOMPY-docu-technique.md) |
+| GETSCODE | SORTCODE retrieval | [GETSCODE-docu-technique.md](GETSCODE-docu-technique.md) |
+
+## Batch Programs
+
+| Program | Description | Documentation |
+|-----------|-------------|---------------|
+| BANKDATA | Data initialization | [BANKDATA-docu-technique.md](BANKDATA-docu-technique.md) |
+
+## External Programs (Simulation)
+
+| Program | Description | Documentation |
+|-----------|-------------|---------------|
+| CRDTAGY1-5 | Simulated credit agencies | [CRDTAGY1-docu-technique.md](CRDTAGY1-docu-technique.md) |
+
+---
+
+*Index automatically generated by Bob Premium for Z*
 ```
 
 ### 🎓 What You Learn
 
-- **Automatic documentation**: Bob analyzes code and generates structured documentation
-- **Batch understanding**: Batch processing logic with VSAM and DB2
-- **Parameterization**: Using PARM to make the program flexible
-- **Data generation**: Techniques for creating coherent test data sets
-- **Error handling**: VSAM and DB2 management patterns
+- **Automation**: A Bobshell can process 28 programs in 3 minutes
+- **Standardization**: Homogeneous documentation for all programs
+- **Reusability**: The Bobshell can be re-executed with each modification
+- **Scalability**: Works for 10 or 1000 programs
+- **Maintenance**: Documentation always up to date
 
 ### 💡 Bob Premium for Z Added Value
 
-| Aspect | Manual Documentation | With Bob Premium for Z |
-|--------|------------------------|------------------------|
-| **Time** | 1-2 days of analysis and writing | 5 minutes of generation |
-| **Quality** | Variable according to writer | Standardized and exhaustive |
-| **Diagrams** | Tedious manual creation | Automatic generation |
-| **Update** | Difficult to maintain | Instant regeneration |
-| **Coverage** | Often partial | 100% of code analyzed |
+| Aspect | Manual Documentation | With Bobshell |
+|--------|------------------------|---------------|
+| **Time** | 2-3 weeks (28 programs) | 3 minutes 42 seconds |
+| **Quality** | Variable depending on writer | Standardized and complete |
+| **Maintenance** | Difficult to maintain | Automatic re-execution |
+| **Coverage** | Often partial | 100% of programs |
+| **Cost** | $12,000 - $18,000 | $50 (Bobshell cost) |
 
-**Gain**: **99.7% time reduction**
+**Overall gain**: **99.8% time reduction**
 
-### 📝 Using the Documentation
+### 🔄 Bobshell Reuse
 
-This documentation is useful for:
+The Bobshell can be reused for:
 
-1. **Onboarding**: New developers quickly understand BANKDATA
-2. **Maintenance**: Reference during program modifications
-3. **Testing**: Understand how to generate data sets
-4. **Migration**: Document behavior before modernization
-5. **Audit**: Traceability of initialization logic
+1. **Regular update**: Re-execute after code modifications
+2. **New programs**: Automatically document additions
+3. **Other projects**: Adapt the script for other applications
+4. **Different formats**: Modify the template for HTML, PDF, etc.
 
+### 📝 Bobshell Customization
 
-## Exercise 5a: Business Rules Analysis
-[↩️](#-table-of-contents)
+You can customize:
 
-### 🎯 Objective
+```yaml
+# Add custom sections
+sections:
+  - "description"
+  - "business_objective"
+  - "performance_metrics"      # ← NEW
+  - "security_considerations"  # ← NEW
+  - "copybooks"
+  - "files_accessed"
 
-Query Bob about the application to discover and analyze in depth the impact of changing a data element. Here, we start by analyzing the variables of a program, then analyze in depth the use of SORTCODE (bank branch code) throughout the application.
+# Change output format
+output_format: "markdown"  # or "html", "pdf", "docx"
 
-### 🔧 Bob Mode to Use
-
-**Mode: 🧰 Z Code**
-
-Z Code mode excels at pattern analysis and extracting business rules embedded in COBOL code.
-
-### 📝 Context
-
-SORTCODE is a critical element:
-- 6-digit code identifying the bank branch
-- Used in all tables as a composite key
-- Current fixed value: 987654
-
-### ✍️ Your Prompt
-
-Start by identifying the variables of a program. Then, refine the description of the use of one of these variables throughout the application. And finally, analyze the impact of changing this variable across the entire application.
-
-**Expected in your prompt:**
-- request a cross-application search
-- request occurrences and usages
-- request implicit business rules
-- request a summary of architectural impacts
-
-### ✅ Recommended Prompt
-
-```text
-What are the variables used in INQACCCU?
+# Filter programs
+filter:
+  include_pattern: "BNK*.cbl"  # Only BNK programs
+  exclude_pattern: "TEST*.cbl"  # Exclude tests
 ```
 
-### ✅ Expected Result
 
-Analysis of INQACCCU program variables completed successfully.
-
-Results:
-
-15 main business variables identified and documented
-13 new entries added to the data dictionary
-Total: 28 entries in the dictionary (15 existing from BANKDATA + 13 new)
-Key variables documented for INQACCCU:
-
-CUSTOMER-NUMBER - Customer identifier used for search
-NUMBER-OF-ACCOUNTS - Counter of accounts found (max 20)
-CUSTOMER-FOUND - Customer existence indicator
-COMM-SUCCESS - Operation success indicator
-HV-ACCOUNT-* - DB2 host variables for account data (number, type, balances, rates, overdraft)
-COMM-FAIL-CODE - Detailed error code
-DB2-DATE-REFORMAT - DB2 date conversion to display format
-SORTCODE - Bank sort code for branch filtering
-Updated file: /Users/ovallod/Library/CloudStorage/Box-Box/OV_IBM/Lab/bobforZ/Bob4z/testbobathon4/bobz/DD.json
-
-The data dictionary now contains business definitions for BANKDATA and INQACCCU programs.
-
-### ✅ Prompt to Continue Analysis:
-
-```text
-How is the SORTCODE variable used in the application?
-```
-
-### ✅ Expected Result
-
-Analysis of SORTCODE variable usage in the CBSA application.
-
-***Definition***
-SORTCODE is a constant defined in the SORTCODE.cpy copybook with the value 987654 (6 digits).
-
-***Role in the Application***
-SORTCODE identifies the bank branch where accounts and customers are managed. It's a branch identifier used throughout the banking system.
-
-***Usage by Program***
-
-***1. Creation Programs (CREACC, CRECUST)***
-- Generation key: Used to generate account/customer numbers via CICS named counters
-- DB2/VSAM storage: Stored in ACCOUNT tables (DB2) and CUSTOMER files (VSAM)
-Audit: Included in PROCTRAN records for traceability
-
-***2. Inquiry Programs (INQACC, INQACCCU, INQCUST)***
-- SQL search criterion: Used in WHERE clauses to filter accounts by branch
-```sql
-WHERE ACCOUNT_SORTCODE = :HV-ACCOUNT-SORTCODE
-```
-
-- VSAM key: Part of the composite key to access CUSTOMER records
-
-***3. Update Programs (UPDACC, UPDCUST, DBCRFUN, XFRFUN)***
-- Identification: Identifies the branch of the account to modify
-- Validation: Verifies that operations are performed on the correct branch
-- Transactions: Recorded in PROCTRAN for each successful operation
-
-***4. Deletion Programs (DELACC, DELCUS)***
-- Deletion criterion: Used to precisely target records to delete
-- Audit: Traced in PROCTRAN before deletion
-
-***5. Batch Program (BANKDATA)***
-- Initialization: Used to create test data with SORTCODE 987654
-- CONTROL counters: Key for control records (format: "987654-ACCOUNT" or "987654-CUSTOMER")
-- Cleanup: Criterion to delete data by branch
-
-***6. Utility Program (GETSCODE)***
-
-Distribution: Returns SORTCODE to calling programs via COMMAREA
-
-***Key Structures***
-
-***Composite Keys Using SORTCODE***
-
-1- ACCOUNT (DB2): SORTCODE (6) + ACCOUNT_NUMBER (8) = 14 characters
-
-2- CUSTOMER (VSAM): SORTCODE (6) + CUSTOMER_NUMBER (10) = 16 characters
-
-3- CONTROL (DB2): "SORTCODE-TYPE" (e.g., "987654-ACCOUNT")
-
-
-***Architectural Importance***
-- Data isolation: Allows separating data by branch
-- Scalability: Facilitates data distribution in a multi-branch environment
-- Security: Limits access to data from a specific branch
-- Audit: Complete traceability of operations by branch
-
-***Current Value***
-
-***987654*** - Branch code used for the CBSA application test/demonstration environment.
-
-
----
-## Exercise 5b: Business Rules Analysis and Inline Code Generation
-[↩️](#-table-of-contents)
-
-### 🎯 Objective
-
-Query Bob about business rules coded in a module, then ask him to create a new one from the editor
-
-### 🔧 Bob Mode to Use
-
-**Mode: 🧰 Z Code**
-
-Z Code mode excels at pattern analysis and extracting business rules embedded in COBOL code.
-
-### 📝 Context
-
-BNK1CAC is the account creation program. It validates input data with a list of rules.
-
-### ✍️ Your Prompt
-
-```text
-Extract and save in an md file, the business rules of BNK1CAC
-```
-**Expected in your prompt:**
-- target the prompt on the target module
-- request implicit business rules
-
-### ✅ Expected Result
-
-Creation of the BNK1CAC-business-rules.md file.
-
-It should contain Input Validation Rules
-- Customer Number Validation
-- Account Type Validation
-- Interest Rate Validation
-...
-
-There are three checks on the customer number (length, no underscores, numeric). We will add a new one: the customer number must start with 99.
-
-Comment: the file should also contain other sections than "Input Validation Rules". They can be considered more technical than business rules and be removed).
-
-### ✅ Prompt to Create the New Rule:
-
-Open BNK1CAC.cbl in the editor. Place your cursor at the beginning of line 458 (which should be just after the validation that the customer number is numeric) and type in the editor
-
-```text
-add a test to verify that a customer number must start with 99
-```
-
-A light bulb appears at the beginning of the sentence. Click on it and select "Add to IBM Bob"
-
-### ✅ Expected Result 
-
-In the IBM Bob prompt area appears:
-```text
-base\cobol_src\BNK1CAC.cbl:458-458
-'''
-add a test to verify that a customer number must start with 99
-'''
-```
-
-Send the prompt to IBM Bob
-
-### ✅ Expected Result 
-1 - BNK1CAC is updated with a new rule starting at line 459:
-```text
-           IF CUSTNOI(1:2) NOT = '99'
-              MOVE SPACES TO MESSAGEO
-              STRING 'Customer number must start with 99'
-                    DELIMITED BY SIZE,
-                     ' ' DELIMITED BY SIZE
-                 INTO MESSAGEO
-              MOVE 'N' TO VALID-DATA-SW
-              MOVE -1 TO CUSTNOL
-              GO TO ED999
-           END-IF.
-```
-
-2 - BNK1CAC-business-rules.md is updated with the new rule and its associated error message.
-
----
-
-## Exercise 6: Change Impact Analysis
-[↩️](#-table-of-contents)
-
-### 🎯 Objective
-
-Evaluate the impact of changing SORTCODE from a fixed value to a variable value to support multiple branches.
-
-### 🔧 Bob Mode to Use
-
-**Mode: 📐 Z Architect**
-
-Z Architect mode is ideal for impact analysis, risk assessment, and architectural change planning.
-
-### 📝 Context
-
-The business wants to deploy the application in multiple branches. You need to evaluate the effort and risks.
-
-### ✍️ Your Prompt
-
-Write your own prompt to request an impact analysis of a major design change around SORTCODE.
-
-**Expected in your prompt:**
-- clearly describe the target change
-- request impacted components
-- request effort and risk estimation
-- request a transition or migration plan
-
-### ✅ Recommended Prompt
-
-```text
-Analyze the impact of changing SORTCODE to support multiple bank branches.
-```
-
-### 🔀 Prompt Variants
-
-```text
-Evaluate the technical and project consequences of moving to a variable SORTCODE in CBSA.
-Provide:
-- List of programs to modify
-- Estimated development effort
-- Identified risks
-- Data migration plan
-- Estimated cost
-```
-
-```text
-Perform a complete impact analysis to transform the fixed SORTCODE into multi-branch data, with risks, effort, and migration.
-```
-
-### ✅ Expected Result
-
-**File created: `docs/CBSA-archi-impact***.md`**
-
-# Impact Analysis: Multi-Branch Banking Support
-
-**Date**: 2026-05-11  
-**Analyst**: Bob (Z Architect)  
-**Proposed change**: Modify the architecture to support multiple branch codes (SORTCODE) instead of a single hardcoded value
-
----
-```
-## 1. Executive Summary
-
-### Proposed Change
-Transform the CBSA application from a **single-branch** architecture (fixed SORTCODE = 987654) to a **multi-branch** architecture allowing management of multiple bank branches with distinct SORTCODEs.
-
-### Global Impact
-- **Impact level**: CRITICAL - Major architectural change
-- **Affected programs**: 21 programs out of 28 (75%)
-- **Impacted components**: Copybooks, DB2 tables, VSAM files, BMS screens, business logic
-- **Estimated effort**: 4-6 weeks of development + 2-3 weeks of testing
-- **Risk**: HIGH - Modifications affecting data structures and business logic
-
----
-
-## 2. Current vs. Target Architecture
-
-### 2.1 Current Architecture (Single-Branch)
-...
-### 2.2 Target Architecture (Multi-Branch)
-## 3. Impacted Components
-### 3.1 Copybooks (CRITICAL Impact)
-### 3.2 DB2 Tables (HIGH Impact)
-### 3.3 VSAM Files (HIGH Impact)
-### 3.4 BMS Screens (MEDIUM Impact)
-## 4. Impacted Programs by Category
-## 5. New Programs Required
-## 6. Data Modifications
-## 7. User Context Management
-## 8. Business Rules to Define
-## 9. Implementation Plan
-## 10. Risks and Mitigation
-## 11. Alternatives Considered
-## 12. Success Metrics
-## 13. Conclusion
-```
----
 ---
 ## 6.📊 Summary and Measurable Gains
 [↩️](#-table-of-contents)
@@ -1983,7 +1751,7 @@ This documentation is useful for:
 
 ---
 
-## Exercise 5: Business Rules Analysis
+## Exercise 5a: Business Rules Analysis
 [↩️](#-table-of-contents)
 
 ### 🎯 Objective
@@ -2111,6 +1879,85 @@ Distribution: Returns SORTCODE to calling programs via COMMAREA
 ***Current Value***
 
 ***987654*** - Branch code used for CBSA application test/demonstration environment.
+
+---
+## Exercise 5b: Business Rules Analysis and inline code generation
+[↩️](#-table-of-contents)
+
+### 🎯 Objective
+
+Query Bob about the business rules coded in a module, then ask it to create a new one from the editor
+
+### 🔧 Bob Mode to Use
+
+**Mode: 🧰 Z Code**
+
+Z Code mode excels at pattern analysis and extracting business rules embedded in COBOL code.
+
+### 📝 Context
+
+BNK1CAC is the create account program. It verifies the input with a list of rules.
+
+### ✍️ Your Prompt
+
+Extract and save in a md file, the business rules from @cobol_src/BNK1CAC.cbl
+
+**Expected in your prompt:**
+- scope the promp to the target module
+- request implicit business rules
+
+### ✅ Expected Result
+
+Creation of BNK1CAC-business-rules.md file.
+
+It should contain Input Validation Rules
+- Customer Number Validation
+- Account Type Validation
+- Interest Rate Validation
+...
+
+Thare are three verifications on the customer number (length, not underscore, numeric). We will add a new one: the customer number should start with 99.
+
+Comment: the file should also contain other sections than "Input Validation Rules". They may be considered to be more technical rules than business rules and removed).
+
+### ✅ Prompt to Create the new rule:
+
+Open BNK1CAC.cbl in the editor. Place your cursor at the beginning of line 458 (which should be just after the validation that the customer number is numeric) and enter in the editor
+
+```text
+add a test to verify a customer number should start with 99
+```
+
+A bulb appears at the begining of the sentence. Click it and select "Add to IBM Bob"
+
+### ✅ Expected Result 
+
+In the prompt area of IBM Bob appears:
+```text
+base\cobol_src\BNK1CAC.cbl:458-458
+'''
+add a test to verify a customer number should start with 99
+'''
+```
+
+Send the prompt to IBM Bob
+
+### ✅ Expected Result 
+1 - BNK1CAC is updated with a new rule startting at line 459:
+```text
+           IF CUSTNOI(1:2) NOT = '99'
+              MOVE SPACES TO MESSAGEO
+              STRING 'Customer number must start with 99'
+                    DELIMITED BY SIZE,
+                     ' ' DELIMITED BY SIZE
+                 INTO MESSAGEO
+              MOVE 'N' TO VALID-DATA-SW
+              MOVE -1 TO CUSTNOL
+              GO TO ED999
+           END-IF.
+```
+
+2 - BNK1CAC-business-rules.md is updated with the new rule and its associated error message.
 
 ---
 
@@ -2333,7 +2180,7 @@ what criteria can be used to search for a customer in CBSA?
 
 #### 💬 Bob Prompt
 
-```text
+```
 What is the plan to implement customer search by email?
 ```
 
@@ -2778,6 +2625,8 @@ PROCEDURE DIVISION.
 
 ## Exercise 9: Automation with Bobshell Premium Z
 [↩️](#-table-of-contents)
+
+### This exercise is under devlopment. Please skip it.
 
 ### 🎯 Objective
 
