@@ -1,4 +1,4 @@
-# Lab : Découverte de Bob Premium for Z
+# Lab : Découverte de IBM Bob Premium Packgae for Z
 ## Analyse et Documentation d'une Application Mainframe CICS
 
 **Durée estimée :** 2-3 heures  

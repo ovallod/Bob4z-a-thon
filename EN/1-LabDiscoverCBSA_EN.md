@@ -1,4 +1,4 @@
-# Lab: Discovering Bob Premium for Z
+# Lab: Discovering IBM Bob Premium Package for Z
 ## Analysis and Documentation of a CICS Mainframe Application
 
 **Estimated Duration:** 2-3 hours  
@@ -10,7 +10,7 @@
 ## 📋 Table of Contents
 
 1. [Introduction](#1-introduction)
-2. [Bob Premium for Z Modes](#2-bob-premium-for-z-modes)
+2. [IBM Bob Premium Package for Z Modes](#2-bob-premium-for-z-modes)
 3. [Lab Preparation](#3-lab-preparation)
 4. [Lab Context](#4-lab-context)
 5. [Learning Objectives](#5-learning-objectives)
