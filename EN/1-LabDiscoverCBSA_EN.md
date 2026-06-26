@@ -88,8 +88,9 @@ Bob Premium for Z offers several specialized modes for different types of tasks:
 - Project planning
 - Architecture reviews
 
-### ❓ Ask
+### Ask
 **Specialty:** Explanations and user documentation
+
 - Non-technical documentation
 - User guides
 - Educational explanations
@@ -97,22 +98,25 @@ Bob Premium for Z offers several specialized modes for different types of tasks:
 - Training
 
 **When to use it:**
+
 - User documentation
 - Training guides
 - Simplified explanations
 - FAQ and support
 
-### 💻 Code
-**Specialty:** Code modification and generation
-- Code writing
-- Refactoring
-- Bug fixes
-- Feature implementation
+###  Agent
+**Specialty:** Write, modify, refactor, and manage code across any language or framework. (Excluding Mainframe Applications) 
+- Code Editing
+- Code Reading
+- Command Execution
+- Task Tracking
 
 **When to use it:**
-- New feature development
-- Code modifications
-- Corrections
+- Create new files
+- Read Files
+- Pull Requests
+- FAQ and support
+
 
 ### 📝 Plan
 **Specialty:** Planning and strategy
